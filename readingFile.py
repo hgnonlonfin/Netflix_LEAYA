@@ -30,7 +30,9 @@ df = pd.DataFrame({'idFilms' : ['1985','1520','12','547'],
 
 #print(df.head())
 
-
+#on appelle la fonction qui lit le fichier texte :
 listeFilmLue = lectureTxt("listeFilm.txt")
 
-#TODO : rechercher la correspondance entre la listeFilmLue et la base (df ici) et afficher le titre du film.
+#rechercher si correspondance entre listeFilmLue et base (df ici) et afficher le titre du film en commun.
+result = df[df['idFilms'].isin(listeFilmLue)]
+print(result['titre'])

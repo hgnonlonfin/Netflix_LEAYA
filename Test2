@@ -1,0 +1,6 @@
+
+x= 100
+
+for q in range(11):
+  print(df2018['WEATHER_CODE_EVENING'].quantile(x))
+  x += 100

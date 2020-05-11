@@ -13,3 +13,7 @@ ratingsTags=ratings.merge(tags, on=["userId","movieId"], how='left')
 
 #Fusion des informations sur les movies et les users
 df=moviesLinks.merge(ratingsTags, on="movieId", how="inner")
+
+#Création des variables binaires du grende de film
+from ... import genresDummies
+genresDummies(df)

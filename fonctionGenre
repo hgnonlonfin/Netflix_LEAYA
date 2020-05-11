@@ -1,0 +1,7 @@
+def genresDummies(DataFrame):
+"""Cette fonction permet de créer les variables binaires pour le genre de film."""
+  tmp=DataFrame["genres"].str.split('|',expand=True)
+  for element in tmp[0].unique():
+    DataFrame[element]=0
+    DataFrame.loc[df["genres"].str.contains(element), element] = 1
+   

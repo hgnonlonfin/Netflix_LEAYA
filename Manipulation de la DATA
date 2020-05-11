@@ -5,7 +5,7 @@ movies=pd.read_csv("https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/
 ratings=pd.read_csv("https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/ratings.csv")
 tags=pd.read_csv("https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/tags.csv")
 
-#Fusion des bases dfMovies et dfLinks
+#Fusion des bases movies et links
 moviesLinks=movies.merge(links, on="movieId", how="inner")
 
 #Fusion des informations sur les users

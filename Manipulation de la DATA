@@ -1,15 +1,15 @@
 #Importation des librairies et des bases données
 import pandas as pd
-dfLinks=pd.read_csv("links.csv") 
-dfMovies=pd.read_csv("movies.csv")
-dfRatings=pd.read_csv("ratings.csv")
-dfTags=pd.read_csv("tags.csv")
+links=pd.read_csv("https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/links.csv") 
+movies=pd.read_csv("https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/movies.csv")
+ratings=pd.read_csv("https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/ratings.csv")
+tags=pd.read_csv("https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/tags.csv")
 
 #Fusion des bases dfMovies et dfLinks
-dfMoviesLinks=dfMovies.merge(dfLinks, on="movieId", how="inner")
+moviesLinks=movies.merge(links, on="movieId", how="inner")
 
 #Fusion des informations sur les users
-dfRatingsTags=dfRatings.merge(dfTags, on=["userId","movieId"], how='left')
+ratingsTags=ratings.merge(tags, on=["userId","movieId"], how='left')
 
 #Fusion des informations sur les movies et les users
-df=dfMoviesLinks.merge(dfRatingsTags, on="movieId", how="inner")
+df=moviesLinks.merge(ratingsTags, on="movieId", how="inner")

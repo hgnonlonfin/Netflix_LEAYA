@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.neighbors import KNeighborsClassifier
 
 #DEFINITION DES FONCTIONS
 
@@ -17,7 +18,7 @@ def genresDummies(DataFrame):
 def askMeGenre(dataframe = df) :
     '''fonction qui demande un genre de film à l'utilisateur et retourne les statistiques principales de ce genre de film dans la bdd'''
     print("Hello ! Quel genre de film aimez-vous ?")
-    genre = input("Action, Adventure, Animation, Children's, Comedy, Crime, \n Documentary, Drama, Fantasy, Film-Noir, Horror, Musical, Mystery, Romance, Sci-Fi, Thriller, War, Western ?")
+    genre = input("Action, Adventure, Animation, Children's, Comedy, Crime, \n Documentary, Drama, Fantasy, Film-Noir, Horror, Musical, Mystery, Romance, Sci-Fi, Thriller, War, Western ? ")
     
     # calculs sur le df total :
     NbFilmsTotaux = len(np.unique(df.movieId))
@@ -43,13 +44,20 @@ def askMeGenre(dataframe = df) :
     print(f'En moyenne ces films sont notés {round(MoyParGenre,1)} / 5 étoiles (la moyenne pour tous les films est {round(MOY,1)})')
     
     # boxplot montrant la distribution des films de cette catégorie
-    plt.figure()
+    # réglagle des sorties graphiques
+    font = {'family' : 'normal',
+        'weight' : 'bold',
+        'size'   : 16}
+
+    plt.rc('font', **font)
+    
+    plt.figure(figsize = (20, 8))
+    plt.subplot(1,2,1)
     sns.boxplot(y = res['rating'], showmeans=True)
     plt.title(f'Répartition des notes pour le genre : {genre}')
-    nomfig = genre + 'png'
-    plt.show()
-    
+
     # répartition des notes:
+    plt.subplot(1,2,2)
     sns.distplot(res['rating'], kde = False)
     plt.title(f'Voici la distribution des notes pour le genre {genre}')
     plt.show()
@@ -61,7 +69,7 @@ def lectureTxt(name = 'listeFilm.txt'):
     listeFilm = []
     content = f.readlines()
     for x in content:
-        listeFilm.append (x.strip())
+        listeFilm.append(x.strip())
 
     return(listeFilm)
     f.close() # nécessaire ?
@@ -93,8 +101,15 @@ listeFilmLue = lectureTxt("listeFilm.txt")
 
 #rechercher si correspondance entre listeFilmLue et base (df ici) et afficher le titre du film en commun.
 result = df[df['movieId'].isin(listeFilmLue)]
-print(result['title'])
-    
+print("Les films que vous aimez sont :\n", np.unique(result['title']))
+print()
+
+# TODO les stats sur ces films
+
+
+#on appelle la fonction des stats par genre
+askMeGenre()
+
 #MODELE de RECOMMANDATION "Item-Item Collaborative Filtering"
 #On implémente un modèle kNN
 
@@ -116,4 +131,15 @@ Du coup, on implémente le modèle sur toute la base de données"""
 modelClassification2 = KNeighborsClassifier(n_neighbors=1)
 modelClassification2.fit(X2, y2)
 
+"""On test le modèle avec une liste de films tirés au hasard"""
 
+films=listeFilmLue
+
+# TODO : à partir de la liste des films, faire les recommandations
+for idFilm in films:
+  print(idFilm)
+  recommandation2=modelClassification2.kneighbors(df.loc[df["movieId"]==idFilm, np.append(df["genres"].str.split('|',expand=True)[0].unique(),["rating"])], n_neighbors=1, return_distance=False)
+  print("Si vous avez aimé le film ", df[df["movieId"]==idFilm]["title"].values[0], ", les 5 films suivants pourraient vous intéresser: \n")
+  for item in np.nditer(recommandation2):
+    print(dfAime[dfAime.index==item][["title", "genres"]].values[0])
+  print()

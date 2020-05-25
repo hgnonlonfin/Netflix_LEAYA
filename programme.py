@@ -29,8 +29,6 @@ def askMeGenre(dataframe = df) :
     # on regroupe les avis par film en utilisant movieId:
     df_grouped = res.groupby('movieId')
 
-   
-    
     # nombre de films de ce genre : 
     nbFilm = len(df_grouped)
     print(f'Il y a {nbFilm} films répértoriés pour le genre {genre}')
@@ -51,14 +49,24 @@ def askMeGenre(dataframe = df) :
     nomfig = genre + 'png'
     plt.show()
     
-    
     # répartition des notes:
     sns.distplot(res['rating'], kde = False)
     plt.title(f'Voici la distribution des notes pour le genre {genre}')
     plt.show()
 
+# fonction qui lit un fichier texte
+def lectureTxt(name = 'listeFilm.txt'):
+    '''fonction qui lit un fichier texte et renvoit une liste des éléments lus'''
+    f = open(name, 'r', encoding = "utf8")
+    listeFilm = []
+    content = f.readlines()
+    for x in content:
+        listeFilm.append (x.strip())
 
+    return(listeFilm)
+    f.close() # nécessaire ?
     
+
 #IMPORTATION DES BASES DE DONNEES
 links = pd.read_csv('https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/links.csv')
 movies = pd.read_csv('https://raw.githubusercontent.com/hgnonlonfin/Netflix_LEAYA/master/movies.csv')
@@ -78,3 +86,12 @@ genresDummies(df)
 # drop des colonnes qui ne nous intéressent pas : timestamp_x  et y
 df = df.drop(columns = ['timestamp'])
 
+
+
+#on appelle la fonction qui lit le fichier texte :
+listeFilmLue = lectureTxt("listeFilm.txt")
+
+#rechercher si correspondance entre listeFilmLue et base (df ici) et afficher le titre du film en commun.
+result = df[df['movieId'].isin(listeFilmLue)]
+print(result['title'])
+    

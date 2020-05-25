@@ -95,3 +95,25 @@ listeFilmLue = lectureTxt("listeFilm.txt")
 result = df[df['movieId'].isin(listeFilmLue)]
 print(result['title'])
     
+#MODELE de RECOMMANDATION "Item-Item Collaborative Filtering"
+#On implémente un modèle kNN
+
+"""Définition de la base de données des films aimés"""
+dfAime=df[df["rating"]>4].groupby(["movieId","title", "genres", "imdbId", "tmdbId"]).mean()
+dfAime.reset_index(inplace=True)
+
+
+"""Définition des variables"""
+X2=dfAime.loc[:,np.append(df["genres"].str.split('|',expand=True)[0].unique(),["rating"])]
+y2=dfAime.loc[:, "movieId"]
+
+"""Défition des bases d'entrainement et de test. Toutefois, vu le type de modèle, on n'as pas vraiment besoin de faire un test.
+Du coup, on implémente le modèle sur toute la base de données"""
+#X_train2, X_test2, y_train2, y_test2 =train_test_split(X2, y2, random_state=42, train_size = 0.80)
+
+
+"""Initialisation du modèle"""
+modelClassification2 = KNeighborsClassifier(n_neighbors=1)
+modelClassification2.fit(X2, y2)
+
+

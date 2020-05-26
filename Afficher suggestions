@@ -1,6 +1,6 @@
 import webbrowser
 
-id = #imdbId, comment sont identifiés les suggestions en sortie du 
+id = #imdbId, comment sont identifiés les suggestions en sortie du test_train? par 'title ?
 res = 7 - len(str(id))
 x = '0'*res + str(id)
 
@@ -8,5 +8,5 @@ url = 'https://www.imdb.com/title/tt' + x + '/?ref_=fn_al_tt_1'
 
 webbrowser.open(url, new=1, autoraise=True)
 
-#Attention depuis l'IDE Pycharm ça ouvre un nouvel onglet 
-#dans un navigateur déjà ouvert, ne semble pas fonctionné dans Google Collabs!
+#Attention depuis l'IDE Pycharm ça ouvre un nouvel onglet dans un navigateur déjà ouvert,
+#ne semble pas fonctionner dans Google Collabs!

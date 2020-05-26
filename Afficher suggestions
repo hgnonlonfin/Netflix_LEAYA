@@ -1,6 +1,6 @@
 import webbrowser
 
-id = #imdbId, comment sont identifiés les suggestions en sortie du test_train? par 'title ?
+id = #imdbId, comment sont identifiés les suggestions en sortie du test_train? par 'title' ?
 res = 7 - len(str(id))
 x = '0'*res + str(id)
 

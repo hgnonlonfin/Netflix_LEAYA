@@ -15,7 +15,7 @@ def genresDummies(DataFrame):
     DataFrame[element]=0
     DataFrame.loc[DataFrame["genres"].str.contains(element), element] = 1
 
-def askMeGenre(dataframe = df) :
+def askMeGenre(df) :
     '''fonction qui demande un genre de film à l'utilisateur et retourne les statistiques principales de ce genre de film dans la bdd'''
     print("Hello ! Quel genre de film aimez-vous ?")
     genre = input("Action, Adventure, Animation, Children's, Comedy, Crime, \n Documentary, Drama, Fantasy, Film-Noir, Horror, Musical, Mystery, Romance, Sci-Fi, Thriller, War, Western ? ")
@@ -60,6 +60,7 @@ def askMeGenre(dataframe = df) :
     plt.subplot(1,2,2)
     sns.distplot(res['rating'], kde = False)
     plt.title(f'Voici la distribution des notes pour le genre {genre}')
+    plt.tight_layout()
     plt.show()
 
 # fonction qui lit un fichier texte
@@ -108,7 +109,7 @@ print()
 
 
 #on appelle la fonction des stats par genre
-askMeGenre()
+askMeGenre(df)
 
 #MODELE de RECOMMANDATION "Item-Item Collaborative Filtering"
 #On implémente un modèle kNN

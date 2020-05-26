@@ -1,1 +1,5 @@
-abc
+id = #imdbId
+res = 7 - len(str(id))
+x = '0'*res + str(id)
+url = 'https://www.imdb.com/title/tt' + x + '/?ref_=fn_al_tt_1'
+url

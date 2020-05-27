@@ -1,0 +1,23 @@
+#lien vers pages web des films:
+id = 4322222
+res = 7 - len(str(id))
+print('0'*res + str(id))
+
+#Affichage des 500 premiers films, vision sur le code imdbId
+columns = ['imdbId','title']
+print(df[columns].sort_values(by = 'imdbId').head(5))
+
+#Affichage des 500 derniers films, vision sur le code imdbId
+columns = ['imdbId','title']
+print(df[columns].sort_values(by = 'imdbId').tail(5))
+
+
+#Création d'une liste http imdb 
+	
+df['Lien_imdb'] = ('https://www.imdb.com/title/tt')
+
+#Concatenation des deux colonnes
+
+df["Lien_du_film"] = df["Lien_imdb"] + df["imdbId"].astype(str)
+
+df.head(5)

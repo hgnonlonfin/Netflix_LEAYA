@@ -15,7 +15,7 @@ def genresDummies(DataFrame):
     DataFrame.loc[DataFrame["genres"].str.contains(element), element] = 1
 
 def askMeGenre(df) :
-    '''fonction qui demande un genre de film � l'utilisateur et retourne les statistiques principales de ce genre de film dans la bdd'''
+    '''fonction qui demande un genre de film à l'utilisateur et retourne les statistiques principales de ce genre de film dans la bdd'''
     print("Hello ! Quel genre de film aimez-vous ?")
     genre = input("Action, Adventure, Animation, Children's, Comedy, Crime, \n Documentary, Drama, Fantasy, Film-Noir, Horror, Musical, Mystery, Romance, Sci-Fi, Thriller, War, Western ? ")
     genre = str.capitalize(genre)
@@ -33,7 +33,7 @@ def askMeGenre(df) :
     nbFilm = len(df_grouped)
     print(f'Il y a {nbFilm} films répertoriés pour le genre {genre}')
     if nbFilm > NbFilmsTotaux/ 5 :
-        print('Il y a du choix dans cette cat�gorie !!')
+        print('Il y a du choix dans cette catégorie !!')
     
     # nombre de films | % / films totaux 
     print(f'Cela représente {round(nbFilm / NbFilmsTotaux  * 100, 1)} % des films totaux')

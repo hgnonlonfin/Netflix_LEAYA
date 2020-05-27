@@ -43,19 +43,28 @@ if __name__ == '__main__':
     modelClassification2 = KNeighborsClassifier(n_neighbors=1)
     modelClassification2.fit(X2, y2)
     
-      #3a: Test du modèle KNN
+      #3b: Test du modèle KNN avec la liste de Cindy
+
     """On test le modèle avec la liste de film de Cindy"""
     df_unique = df.groupby(['title', 'movieId']).mean() #Calcul de la moyenne du rating par film
     df_unique.reset_index(inplace=True) 
-        
+    liste=[]   
     for idFilm in listeFilmLue:
       idFilm = int(idFilm)
       listeCol = np.append(movies["genres"].str.split('|', expand=True)[0].unique(), ['rating'])
       res = df_unique.loc[df_unique["movieId"] == idFilm]
       res = res[listeCol]
       
-      recommandation2 = modelClassification2.kneighbors(res, n_neighbors=1, return_distance=False)
-      print("Si vous avez aimé le film ", movies[movies["movieId"] == idFilm]["title"].values[0], ", le film suivant pourrait vous intéresser: \n")
+      recommandation2 = modelClassification2.kneighbors(res, n_neighbors=2, return_distance=False)
+     
       for item in np.nditer(recommandation2):
-        print(dfAime[dfAime.index == item][["title", "genres"]].values[0])
-      print()
+            proposition=df_unique[df_unique.index==item]["movieId"].values[0]
+            if proposition not in listeFilmLue:
+                  liste.append(proposition)
+      
+    # print(liste, "\n")
+    recom=random.sample(liste,5)
+    # print(recom, "\n")
+    for ID in recom:
+          print("titre du film: ", movies[movies["movieId"]==ID]["title"].values[0], "/catégorie du film: ", movies[movies["movieId"]==ID]["genres"].values[0], "\n")
+      

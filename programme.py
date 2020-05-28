@@ -2,6 +2,8 @@
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 from outil import *
+import random
+
 
 if __name__ == '__main__':
       

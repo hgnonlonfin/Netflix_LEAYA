@@ -2,8 +2,46 @@ from tkinter import *
 
 import webbrowser
 
-def open_imdb():
-    id = 114709 #exemple avec Toy Story
+i = 114709
+
+def open_imdb1():
+    id = i
+    res = 7 - len(str(id))
+    x = '0'*res + str(id)
+    url = 'https://www.imdb.com/title/tt' + x + '/?ref_=fn_al_tt_1'
+    webbrowser.open(url, new=1, autoraise=True)
+
+j = 5632
+    
+def open_imdb2():
+    id = j
+    res = 7 - len(str(id))
+    x = '0'*res + str(id)
+    url = 'https://www.imdb.com/title/tt' + x + '/?ref_=fn_al_tt_1'
+    webbrowser.open(url, new=1, autoraise=True)
+    
+k = 358488
+    
+def open_imdb3():
+    id = k
+    res = 7 - len(str(id))
+    x = '0'*res + str(id)
+    url = 'https://www.imdb.com/title/tt' + x + '/?ref_=fn_al_tt_1'
+    webbrowser.open(url, new=1, autoraise=True)
+  
+l = 14587
+   
+def open_imdb4():
+    id = l
+    res = 7 - len(str(id))
+    x = '0'*res + str(id)
+    url = 'https://www.imdb.com/title/tt' + x + '/?ref_=fn_al_tt_1'
+    webbrowser.open(url, new=1, autoraise=True)
+
+m = 452658
+
+def open_imdb5():
+    id = m
     res = 7 - len(str(id))
     x = '0'*res + str(id)
     url = 'https://www.imdb.com/title/tt' + x + '/?ref_=fn_al_tt_1'
@@ -11,27 +49,61 @@ def open_imdb():
 
 window = Tk()
 
-window.title("Mon système de recommandation")
+window.title("Notre système de recommandation")
 
 window.geometry("1080x720")
 
 window.minsize(480, 360)
 
-window.config(background='#F433FF')
+window.config(background='#B9DCDB')
 
-frame = Frame(window, bg='#F433FF')
+frame = Frame(window, bg='#B9DCDB')
 
-label_title = Label(window, text="Bienvenue au cinéma LEAYA", font=("mincho", 40),bg='#F433FF', fg='white')
+label_title = Label(window, text="Voici la liste de nos 5 suggestions de films.", font=("Helvetica", 20),bg='#B9DCDB', fg='black')
 
 label_title.pack()
 
-label_subtitle = Label(window, text="Si vous désirez connaitre nos recommandations de films selon vos goûts veuillez cliquez ici !", font=("Courrier", 15),bg='#F433FF', fg='blue')
+label_subtitle = Label(window, text="Pour voir la fiche IMDb d'une de nos recommandations de films, cliquez dessus !", font=("mincho", 15),bg='#B9DCDB', fg='blue')
 
 label_subtitle.pack()
 
-yt_button = Button(frame, text="Voir les recommandations", font=("Courrier", 25),bg='blue', fg='#F433FF', command=open_imdb)
+m = "1--------------1"
 
-yt_button.pack(pady=25, fill=X)
+yt_button1 = Button(frame, text= m, font=("Helvetica", 15),fg='black', bg='#B9DCDB', command=open_imdb1, relief='ridge', cursor='heart')
+
+yt_button1.pack(pady=15, fill=X)
+
+m = "2--------------2"
+
+yt_button2 = Button(frame, text= m, font=("Helvetica", 15),fg='black', bg='#B9DCDB', command=open_imdb2, relief='ridge', cursor='gumby')
+
+yt_button2.pack(pady=15, fill=X)
+
+m = "3--------------3"
+
+yt_button3 = Button(frame, text= m, font=("Helvetica", 15),fg='black', bg='#B9DCDB', command=open_imdb3, relief='ridge', cursor='umbrella')
+
+yt_button3.pack(pady=15, fill=X)
+
+m = "4--------------4"
+
+yt_button4 = Button(frame, text= m, font=("Helvetica", 15),fg='black', bg='#B9DCDB', command=open_imdb4, relief='ridge', cursor='box_spiral')
+
+yt_button4.pack(pady=15, fill=X)
+
+m = "5--------------5"
+
+yt_button5 = Button(frame, text= m, font=("Helvetica", 15),fg='black', bg='#B9DCDB', command=open_imdb5, relief='ridge', cursor='star')
+
+yt_button5.pack(pady=15, fill=X)
+
+frame.pack(expand=YES)
+
+frame = Frame(window, bg='#B9DCDB')
+
+label_subtitle = Label(window, text="Nous espérons que notre suggestion de films vous a plu, à bientôt !", font=("mincho", 15),bg='#B9DCDB', fg='blue')
+
+label_subtitle.pack()
 
 frame.pack(expand=YES)
 

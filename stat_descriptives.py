@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import outil as *
+from outil import *
 
 # lire les données
 #Etape 0: Importation des bases

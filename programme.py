@@ -21,9 +21,9 @@ if __name__ == '__main__':
     
       #1c Application de la fonction genresDummies pour transformer la colonne genre en n * genres remplis de 0 ou 1
     genresDummies(df)   
-    df = df.drop(columns = ['timestamp']) # drop des colonnes qui ne nous int�ressent pas : timestamp_x  et y
+    df = df.drop(columns = ['timestamp']) # drop des colonnes qui ne nous intéressent pas : timestamp_x  et y
     
-    # ajout d'une colonne Link_movies avec formattage des lien imbd (7 chiffres)
+      # ajout d'une colonne Link_movies avec formattage des lien imbd (7 chiffres)
     moviesLinks['Link_movies'] = ('https://www.imdb.com/title/tt') + moviesLinks['imdbId'].astype(str).apply(lambda x: x.zfill(7))
 
     #Etape 2: Lecture d'un fichier txt et affichage des titres de films

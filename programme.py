@@ -177,3 +177,5 @@ label_subtitle.pack()
 frame.pack(expand=YES)
 
 window.mainloop()
+
+askMeGenre(df)
